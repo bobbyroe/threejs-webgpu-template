@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { varying, tangentWorld, modelNormalMatrix, normalLocal } from "three/tsl";
+// import { positionWorld } from "three/tsl";
 import getLayer from "./libs/getLayer.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 const w = window.innerWidth;
@@ -15,12 +15,11 @@ document.body.appendChild(renderer.domElement);
 const ctrls = new OrbitControls(camera, renderer.domElement);
 ctrls.enableDamping = true;
 
-const geometry = new THREE.TorusKnotGeometry(1.5, 0.5, 256, 64);
+const geometry = new THREE.TorusKnotGeometry(1.0, 0.35, 256, 64);
 
 const material = new THREE.MeshStandardNodeMaterial({
+  color: 0xff0066,
 });
-const normalView = varying( modelNormalMatrix.mul( tangentWorld ) );
-material.colorNode = normalView.normalize();
 const knot = new THREE.Mesh(geometry, material);
 scene.add(knot);
 
@@ -38,10 +37,8 @@ const sprites = getLayer({
 });
 scene.add(sprites);
 
-function animate(t = 0) {
-  t *= 0.001;
+function animate() {
   requestAnimationFrame(animate);
-  knot.rotation.x = t;
   renderer.renderAsync(scene, camera);
   ctrls.update();
 }
