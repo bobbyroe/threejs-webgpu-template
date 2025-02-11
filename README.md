@@ -2,6 +2,8 @@
 
 A simple JavaScript project using Three.js with WebGPU. Includes a torus knot with orbit controls and a background sprite layer.
 
+![image](./torus-knot.png)
+
 ## Features
 - **Three.js**: Uses the WebGPU renderer for better performance.
 - **Orbit Controls**: Allows user interaction via mouse movement.
