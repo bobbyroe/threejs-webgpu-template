@@ -1,7 +1,7 @@
 import * as THREE from "three";
-// import { positionWorld } from "three/tsl";
 import getLayer from "./libs/getLayer.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+// import { positionWorld } from "three/tsl";
 const w = window.innerWidth;
 const h = window.innerHeight;
 const scene = new THREE.Scene();
@@ -16,7 +16,6 @@ const ctrls = new OrbitControls(camera, renderer.domElement);
 ctrls.enableDamping = true;
 
 const geometry = new THREE.TorusKnotGeometry(1.0, 0.35, 256, 64);
-
 const material = new THREE.MeshStandardNodeMaterial({
   color: 0xff0066,
 });
@@ -39,6 +38,8 @@ scene.add(sprites);
 
 function animate() {
   requestAnimationFrame(animate);
+  knot.rotation.x += 0.01;
+  knot.rotation.y += 0.02;
   renderer.renderAsync(scene, camera);
   ctrls.update();
 }
